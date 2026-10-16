@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131c">
+  <title>Say More — English speaking practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=4">
+  <link rel="stylesheet" href="{{ url_for('static', filename='extras.css') }}?v=4">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Say More home"><span class="brand-mark">s<span>.</span></span><span>say more</span></a>
+    <div class="header-note"><span class="live-dot"></span><span>YOUR DAILY SPEAKING SPACE</span></div>
+    <div class="header-actions"><button class="progress-button" id="progressButton">View weekly review <span>↗</span></button><button class="sound-toggle" id="soundToggle" title="Toggle timer sound" aria-label="Toggle timer sound"><span class="sound-icon">♫</span></button></div>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <div class="eyebrow"><span class="eyebrow-line"></span> A LITTLE PRACTICE, A LOT MORE CONFIDENCE</div>
+      <h1>Find your words.<br><span>Then say more.</span></h1>
+      <p class="intro-copy">One fresh topic. Five minutes of English. No perfect sentences needed—just keep going.</p>
+      <div class="streak-note"><span class="sparkle">✳</span><span>Think in English. Speak in English. Grow at your pace.</span></div>
+    </section>
+
+    <section class="practice-card" aria-live="polite">
+      <div class="card-topline"><span class="today-label"><span class="tiny-sun">✳</span> TODAY'S SPEAKING PROMPT</span><span class="topic-counter" id="topicCounter">01 <i>/</i> ∞</span></div>
+      <div class="topic-meta"><span class="category-pill" id="category">A LITTLE OF EVERYTHING</span><span class="level-pill" id="level">READY WHEN YOU ARE</span></div>
+      <h2 id="topicTitle">Your next conversation starts here.</h2>
+      <p class="topic-explanation" id="topicExplanation">Tap below to get a fresh topic with a little context, then speak about it in your own words.</p>
+      <div class="example-box" id="exampleBox" hidden><span class="example-icon">↳</span><div><span class="example-label">A QUICK EXAMPLE</span><p id="topicExample"></p></div></div>
+
+      <div class="topic-actions" id="topicActions"><button class="primary-button" id="newTopic"><span class="button-spark">✳</span><span>Surprise me with a topic</span><span class="button-arrow">↗</span></button></div>
+
+      <div class="session hidden" id="session">
+        <button class="another-topic" id="anotherTopic">↻ &nbsp;This topic isn't for me — try another</button>
+        <div class="timer-wrap"><div class="timer-ring" id="timerRing"><div class="timer-inner"><span class="timer-caption" id="timerCaption">READY?</span><span class="timer-time" id="timer">05:00</span></div></div></div>
+        <p class="timer-hint" id="timerHint">Start when you're ready. The five minutes are yours.</p>
+        <div class="recording-live hidden" id="recordingLive"><span></span> Recording your speaking</div>
+        <div class="session-buttons"><button class="primary-button start-button" id="startButton"><span>Start speaking</span><span class="button-arrow">▶</span></button><button class="idea-button" id="ideaButton" disabled><span>✦</span> Need an idea?</button></div>
+        <div class="idea-box hidden" id="ideaBox"><span class="idea-star">✦</span><p id="ideaText"></p></div>
+        <div class="timer-finished hidden" id="timerFinished"><span>⏱</span><span>Five minutes! Keep going if you have more to say.</span><button id="continueButton">Keep going <span>↗</span></button></div>
+        <button class="finish-button hidden" id="finishButton">Finish &amp; get feedback <span>↓</span></button>
+      </div>
+
+      <div class="feedback-panel hidden" id="feedbackPanel">
+        <div class="feedback-heading"><div><span class="feedback-kicker">A MOMENT TO REFLECT</span><h3>Your speaking feedback</h3></div><button class="close-feedback" id="closeFeedback" aria-label="Close feedback">×</button></div>
+        <p class="feedback-copy" id="feedbackStatus">When you finish, your recording will be transcribed and reviewed by Gemini.</p>
+        <div class="record-area" id="recordArea"><button class="record-button" id="recordButton"><span class="record-dot"></span><span id="recordLabel">Record my recap</span></button><span class="record-note" id="recordNote">Your recording is sent for transcription after you finish the session.</span></div>
+        <div class="recording-status hidden" id="recordingStatus"><span class="recording-pulse"></span><span id="recordingText">Recording…</span><span id="recordingClock">00:00</span></div>
+        <button class="primary-button feedback-submit" id="feedbackSubmit" disabled><span>Get my feedback</span><span class="button-arrow">↗</span></button>
+        <div class="feedback-result hidden" id="feedbackResult"></div>
+        <p class="feedback-error hidden" id="feedbackError"></p>
+      </div>
+
+      <div class="card-footer"><span><span class="footer-check">✓</span> There is no wrong way to begin.</span><span class="footer-time">JUST YOU &amp; YOUR IDEAS</span></div>
+    </section>
+
+    <section class="how-row" aria-label="How it works">
+      <div class="how-item"><span class="how-number">01</span><span>Get a topic</span><span class="how-detail">Pick up a fresh idea</span></div><div class="how-divider"></div>
+      <div class="how-item"><span class="how-number">02</span><span>Speak freely</span><span class="how-detail">Five minutes, your pace</span></div><div class="how-divider"></div>
+      <div class="how-item"><span class="how-number">03</span><span>Keep growing</span><span class="how-detail">One day at a time</span></div>
+    </section>
+    <section class="progress-dashboard hidden" id="progressDashboard" aria-live="polite">
+      <div class="dashboard-heading"><div><span class="feedback-kicker">YOUR PRACTICE, OVER TIME</span><h2>Your weekly review</h2><p id="weekRange">This week compared with last week</p></div><button class="close-review" id="closeReview">Back to practice <span>×</span></button></div>
+      <div class="summary-grid">
+        <article class="summary-card"><span class="summary-label">THIS WEEK</span><strong id="weekSessions">0</strong><span>speaking sessions</span></article>
+        <article class="summary-card"><span class="summary-label">PRACTICE TIME</span><strong id="weekMinutes">0 min</strong><span id="previousMinutes">0 min last week</span></article>
+        <article class="summary-card"><span class="summary-label">OVERALL SCORE</span><strong id="weekScore">—</strong><span id="scoreChange">No score yet</span></article>
+        <article class="summary-card rank-card"><span class="summary-label">YOUR CURRENT RANK</span><strong id="currentRank">Starting</strong><span>Based on your last 8 scored sessions</span><span id="growthRank">Weekly growth: building your baseline</span></article>
+      </div>
+      <div class="dashboard-columns">
+      <article class="dashboard-card score-card"><div class="section-heading"><div><h3>Speaking skills</h3><p>Average scores out of 10</p></div><span class="comparison-label">vs last week</span></div><div id="scoreBars" class="score-bars"></div><p class="score-footnote">* Fluency is a rough transcript estimate; audio and pronunciation are not scored. Practice time includes pauses while the timer runs.</p></article>
+        <article class="dashboard-card insight-card"><div class="section-heading"><div><h3>Your patterns</h3><p>Based on saved session feedback</p></div></div><div class="insight-block"><span class="insight-icon strength-icon">✦</span><div><b>You're doing well at</b><p id="strengthInsight">Complete a session to see your strengths.</p></div></div><div class="insight-block"><span class="insight-icon focus-icon">↗</span><div><b>Keep an eye on</b><p id="focusInsight">Repeated improvement points will show up here.</p></div></div><div class="next-focus"><span>NEXT WEEK'S SMALL FOCUS</span><p id="nextFocus">One practice at a time.</p></div></article>
+      </div>
+      <article class="dashboard-card history-card"><div class="section-heading"><div><h3>Practice history</h3><p>Open a session to read the transcript and feedback.</p></div><button class="clear-history" id="clearHistory">Clear all history</button></div><div class="history-list" id="historyList"><p class="empty-history">Your finished sessions will appear here.</p></div></article>
+    </section>
+    <footer class="page-footer"><span>Small steps count.</span><span>MADE FOR YOUR VOICE <span class="footer-heart">♥</span></span></footer>
+  </main>
+  <dialog class="session-dialog" id="sessionDialog"><div class="dialog-top"><span class="feedback-kicker">SESSION DETAILS</span><button class="close-dialog" id="closeDialog" aria-label="Close details">×</button></div><div id="sessionDetails"></div></dialog>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}?v=4" defer></script>
+</body>
+</html>
